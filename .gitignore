@@ -27,4 +27,6 @@
 /config/master.key
 
 
-.env
+.envsendgrid.env
+sendgrid.env
+sendgrid.env
