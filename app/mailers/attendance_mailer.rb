@@ -3,19 +3,18 @@ default from: 'no-reply@monsite.fr'
 
 	  def welcome_attendees(attendance)
 
-  	@event = Event.find(id: attendance.event_id).admin_id
+  	attendance = Attendance.last.event_id
 
-  	@user = User.where(id: @event).email
-
-  	# @admin = Event.where(id: @event).admin_id
-  	# @user = User.where(id: @admin)
-  	puts "######‡‡‡‡‡‡‡‡‡‡‡‡"
-  	puts @event
+  	event = Event.where(id: attendance)
   
+  	event = event[0].admin_id
 
-  # 	@url = 'http://monsite.fr/login' 
+  	user = User.where(id: event)
 
-		# mail(to: @admin.email, subject: 'Un nouveau participant !')  	
+  	@url = 'http://monsite.fr/login' 
+
+		 mail(to: @user.email, subject: 'Un nouveau participant !')  	
 
   end
 end
+
