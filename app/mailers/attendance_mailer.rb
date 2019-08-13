@@ -11,6 +11,8 @@ default from: 'no-reply@monsite.fr'
 
   	user = User.where(id: event)
 
+  	 @user = user[0]
+
   	@url = 'http://monsite.fr/login' 
 
 		 mail(to: @user.email, subject: 'Un nouveau participant !')  	
