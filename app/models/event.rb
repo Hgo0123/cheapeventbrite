@@ -18,6 +18,10 @@ class Event < ApplicationRecord
    def message_time
       start_date.strftime("%d/%m/%y | %l:%M %p")
     end
+    def the_end
+         @end = (start_date + duration.minute)
+           @the_end = @end.strftime("%d/%m/%y | %l:%M %p")
+     end
 
    private
 
@@ -32,9 +36,9 @@ class Event < ApplicationRecord
   def multiple_of_5
     if duration == nil
     puts "Vous dvez renseignez une durée"
-  else
+    else
   	errors.add(:duration, "must be a multiple of 5") if (duration % 5) != 0
+    end
   end
-  end
-
+ 
 end

@@ -28,17 +28,19 @@
        <li class="nav-item">
         <a class="nav-link" href="<%=users_show_path%>">Profile</a>
       </li>
-     
-      
+    </ul> 
+      <ul class="navbar-nav ml-auto">
       <%if !user_signed_in?%>
+    
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Sign in / Log in
         </a>
         <%else%>
+        
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Log out/ Edit Profile
+          <a class="nav-link dropdown-toggle ml-auto" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Log out / Edit Profile
           </a><%end%>
          
           
@@ -55,6 +57,7 @@
            <center><a href=""></a></center>
           </div>
         </li>
+    
         <%end%>
       </ul>
     </div>
