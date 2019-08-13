@@ -1,4 +1,12 @@
-<h1>Creer un evenement</h1>
+
+<div class="jumbotron jumbotron-fluid jumboevent">
+	<h1 class="display-3 text-white" style="margin-left: 20px;">Lance toi, <%if user_signed_in?%><%=current_user.first_name%><%else%><%=nil%><%end%></h1>
+	<p class="display-3 text-white" style="margin-left: 20px;"> Créer ton propre événement ! </p>
+	<p class="lead text-white" style="margin-left: 20px;">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+
+	<a class="btn btn-primary btn-lg" href="#form" role="button" style="margin-left: 20px;">Learn more</a>
+</div>
+<div class="body">
 
 <%if @new_event.errors.any? %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -8,13 +16,12 @@
 
     <% end %>
     <%end%>
-    <br>
 
 
 <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-<form>
-	<div class="form-row" style="width: 70%; margin: auto;">
+<form >
+	<div id="form" class="form-row" style="width: 70%; margin: auto;">
 		<div class="form-group col-md-6">
 			<label for="inputEmail4">Title</label>
 			<%= text_field_tag 'title', @new_event.title, class: "form-control" %>
@@ -51,3 +58,4 @@
 <center><p type="submit" style="width: 20%; height: 10px;"><%= submit_tag "Create Event", class: "btn btn-primary" %></p></center>
 </form>
 <%end%>
+<br><br>

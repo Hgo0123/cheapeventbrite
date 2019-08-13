@@ -10,14 +10,15 @@
 
 	
 <center>
+
 <%@event.all.reverse_each do |e|%>
-<div class="card" style="width: 18rem;">
+<a href="<%=event_path(e.id)%>" class="text-body" style="text-decoration: none;">
+<div class="card indexcard" style="width: 21rem;">
 	<div class="card-img-top">
-  <%=image_tag('back.jpg', size: '286x200')%></div>
+  <%=image_tag('back.jpg', size: '335x169', style: "border-radius: 10px 10px 0px 0px;")%></div>
   <div class="card-body">
-    <p class="card-text my-text"><%=e.title%></p>
-    <small style="font-size: 10px;"><%=link_to "En savoir plus", event_path(e.id)%></small>
-    <br>
+    <p class="card-text my-text" style="font-size: 1.25rem;"><%=e.title%></p>
+  
      <small><p style="font-size: 10px;" class="text-secondary">
      À partir de <%=e.price%>.00 €
      <br>
@@ -26,5 +27,6 @@
     <%=e.location%></p></small>
   </div>
 </div>
+</a>
   <%end%>
 </center>

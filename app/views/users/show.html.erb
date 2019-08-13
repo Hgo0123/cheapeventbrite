@@ -13,18 +13,16 @@
 </div>
 
 <br>
-
+<center>
 <div style="margin-top: 10px;">
 <h6>Tes événements :</h6>
 </div>
 <%@event.reverse_each do |g|%>
-<div class="card" style="width: 18rem;">
+<div class="card usershow" style="width: 21rem;">
 	<div class="card-img-top">
-  <%=image_tag('back.jpg', size: '286x200')%></div>
+  <%=image_tag('back.jpg',size: '335x169', style: "border-radius: 10px 10px 0px 0px;")%></div>
   <div class="card-body">
-    <p class="card-text my-text"><%=g.title%></p>
-    <small style="font-size: 10px;"><%=link_to "En savoir plus", event_path(g.id)%></small>
-    <br>
+    <p class="card-text my-text"style="font-size: 1.25rem;"><%=g.title%></p>
      <small><p style="font-size: 10px;" class="text-secondary">
      À partir de <%=g.price%>.00 €
      <br>
@@ -33,4 +31,4 @@
     <%=g.location%></p></small>
   </div>
 </div>
-  <%end%>
+  <%end%></center>

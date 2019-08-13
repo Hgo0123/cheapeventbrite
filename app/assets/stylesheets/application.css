@@ -17,9 +17,17 @@
 div.card {
 	display: inline-block;
 	margin: 5px;
+	}
+.indexcard {
+	border-radius: 10px;
+	height: 330px;
+}
+.usershow{
+	border-radius: 10px;
+	height: 330px;
 }
 .my-text{
-	height: 50px;
+	height: 70px;
 	overflow: hidden;
 	overflow: scroll;
 }
