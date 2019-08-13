@@ -17,20 +17,18 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown" id="navbarText">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="<%=new_event_path%>">Creer un evenement <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=new_event_path%>">Créer un événement <span class="sr-only">(current)</span></a>
       </li>
       
       <li class="nav-item">
         <a class="nav-link" href="">Contact</a>
       </li>
-      <% if !user_signed_in? %>
-      <%=nil%>
-      <%else%>
+      
        <li class="nav-item">
         <a class="nav-link" href="<%=users_show_path%>">Profile</a>
       </li>
-      <%end%>
+     
       
       <%if !user_signed_in?%>
       <li class="nav-item dropdown">
@@ -40,7 +38,7 @@
         <%else%>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Log out
+            Log out/ Edit Profile
           </a><%end%>
          
           
@@ -50,7 +48,11 @@
             <center><a class="dropdown-item" href="<%=new_user_registration_path%>" style="color: gray;">Sign in</a></center>
             <center><a class="dropdown-item" href="<%=new_user_session_path%>" style="color: gray;">Log in</a></center>
             <%else%>
-            <center><a class="dropdown-item" href=""><%=link_to "Log out", destroy_user_session_path, method: :delete,data: {confirm: "Veux tu vraiment nous quitter ?"}, style:"color: gray; text-decoration: none;"%></a></center>
+            <center><a class="dropdown-item" href=""><%=link_to "Log out", destroy_user_session_path, method: :delete,data: {confirm: "Veux tu vraiment nous quitter ?"}, style:"color: gray; text-decoration: none;"%>
+            </a></center>
+            <br>
+           <center><a href="<%=edit_user_registration_path%>" style="color: gray; text-decoration: none;">Edit Profile</a></center>
+           <center><a href=""></a></center>
           </div>
         </li>
         <%end%>

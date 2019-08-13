@@ -1,0 +1,25 @@
+<br>
+<center><h1>Bienvenue sur l'événement : <br/><%=@event.title%></h1>
+    <br/><br/>
+    <div class="card my-card" style="width: 25rem; margin: 5px;">
+    <div class="card-body">
+
+        <h6 class="card-subtitle mb-2 text-muted">Son lieu : <%=@event.location%></h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Date de début : <%=@event.message_time%></h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Durée : <%=@event.duration%> minutes</h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Description : "<%=@event.description%>"</h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Prix : <%=@event.price%> euros</h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">Créé par : <%=@event.admin.first_name%> / <%=@event.admin.email%></h6>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted">nombre de participants : <%=Attendance.where(event_id: params[:id]).count%></h6>
+
+        
+
+    </div>
+    </div>
+    </center>

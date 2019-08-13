@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+div.card {
+	display: inline-block;
+	margin: 5px;
+}
+.my-text{
+	height: 50px;
+	overflow: hidden;
+	overflow: scroll;
+}
+
+div.card:hover {
+	border: .1px solid white;
+	box-shadow: 1px 1px 10px 1px gray;
+}

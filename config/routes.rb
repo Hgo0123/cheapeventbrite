@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
 
   get 'users/show'
-root 'events#index'
+  root 'events#index'
+
+
 
 resources :events
 

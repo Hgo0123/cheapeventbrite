@@ -1,1 +1,30 @@
-<h1>Salut event#index</h1>
+
+<div class="jumbotron jumbotron-fluid">
+	<h1 class="display-3 text-white">Hello, <%if user_signed_in?%><%=current_user.first_name%><%else%><%=nil%><%end%></h1>
+	<p class="display-3 text-white"> Welcome sur cette magnifique page ! </p>
+	<p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+
+	<a class="btn btn-primary btn-lg" href="#card" role="button">Learn more</a>
+</div>
+<div class="body">
+
+	
+<center>
+<%@event.all.reverse_each do |e|%>
+<div class="card" style="width: 18rem;">
+	<div class="card-img-top">
+  <%=image_tag('back.jpg', size: '286x200')%></div>
+  <div class="card-body">
+    <p class="card-text my-text"><%=e.title%></p>
+    <small style="font-size: 10px;"><%=link_to "En savoir plus", event_path(e.id)%></small>
+    <br>
+     <small><p style="font-size: 10px;" class="text-secondary">
+     À partir de <%=e.price%>.00 €
+     <br>
+    <%=e.message_time%>, Durée : <%=e.duration%> min
+   	<br>
+    <%=e.location%></p></small>
+  </div>
+</div>
+  <%end%>
+</center>

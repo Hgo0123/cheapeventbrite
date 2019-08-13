@@ -9,6 +9,9 @@
 
 require 'faker'
 
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
 
 10.times do |i|
 number = [10,20, 30, 40, 55, 60]

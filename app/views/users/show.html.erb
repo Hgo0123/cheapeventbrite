@@ -1,2 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<br>
+
+
+<div class="card" style="width: 18rem; margin-right: 10px ">
+  <div class="card-header">
+    <%=current_user.first_name%> <%=current_user.last_name%>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%=current_user.email%></li>
+  </ul>
+  <a style="margin-left: 20px; color: gray; text-decoration: none;"><%=link_to "Editer ton profil", edit_user_registration_path , style: "color: gray; text-decoration: none;" %></a>
+  <br>
+</div>
+
+<br>
+
+<div style="margin-top: 10px;">
+<h6>Tes événements :</h6>
+</div>
+<%@event.reverse_each do |g|%>
+<div class="card" style="width: 18rem;">
+	<div class="card-img-top">
+  <%=image_tag('back.jpg', size: '286x200')%></div>
+  <div class="card-body">
+    <p class="card-text my-text"><%=g.title%></p>
+    <small style="font-size: 10px;"><%=link_to "En savoir plus", event_path(g.id)%></small>
+    <br>
+     <small><p style="font-size: 10px;" class="text-secondary">
+     À partir de <%=g.price%>.00 €
+     <br>
+    <%=g.message_time%>, Durée : <%=g.duration%> min
+   	<br>
+    <%=g.location%></p></small>
+  </div>
+</div>
+  <%end%>
