@@ -28,7 +28,7 @@
       </li>
       
        <li class="nav-item">
-        <a class="nav-link" href="<%=users_show_path%>">Profile</a>
+        <a class="nav-link" href="<%=user_path(current_user.id)%>">Profile</a>
       </li>
     </ul> 
       <ul class="navbar-nav ml-auto">
@@ -55,7 +55,7 @@
             <center><a class="dropdown-item" href=""><%=link_to "Log out", destroy_user_session_path, method: :delete,data: {confirm: "Veux tu vraiment nous quitter ?"}, style:"color: gray; text-decoration: none;"%>
             </a></center>
             <br>
-           <center><a href="<%=edit_user_registration_path%>" style="color: gray; text-decoration: none;">Edit Profile</a></center>
+           <center><a href="<%=edit_user_path(current_user.id)%>" style="color: gray; text-decoration: none;">Edit Profile</a></center>
            <center><a href=""></a></center>
           </div>
         </li>

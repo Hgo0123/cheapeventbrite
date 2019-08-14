@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
 
 	belongs_to :admin, :foreign_key => :admin_id, class_name: 'User'
-
+  belongs_to :attendee, :foreign_key => :attendee_id, class_name: 'User', optional: true
   has_many :attendances
   has_many :users, through: :attendances
 
@@ -22,6 +22,8 @@ class Event < ApplicationRecord
          @end = (start_date + duration.minute)
            @the_end = @end.strftime("%d/%m/%y | %l:%M %p")
      end
+
+
 
    private
 

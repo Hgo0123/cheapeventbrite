@@ -9,10 +9,12 @@ class User < ApplicationRecord
 	has_many :attendances
   has_many :events, through: :attendances
   has_many :created_events, class_name: "Event", foreign_key: 'admin_id'
+  has_many :attended_events, class_name: "Event", foreign_key: 'attendee_id'
 
 
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+
 end

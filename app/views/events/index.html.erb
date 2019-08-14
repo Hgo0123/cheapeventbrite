@@ -1,4 +1,8 @@
-
+<% if flash[:alert] != nil %>
+    <div class='alert alert-success mt-4'>
+       <center> <%= flash[:alert] %></center>
+    </div>
+  <%end%>
 <div class="jumbotron jumbotron-fluid">
 	<h1 class="display-3 text-white" style="margin-left: 20px;">Hello, <%if user_signed_in?%><%=current_user.first_name%><%else%><%=nil%><%end%></h1>
 	<p class="display-3 text-white" style="margin-left: 20px;"> Welcome sur cette magnifique page ! </p>

@@ -1,8 +1,13 @@
+<% if flash[:alert] != nil %>
+<div class='alert alert-success mt-4'>
+ <center> <%= flash[:alert] %></center>
+</div>
+<%end%>
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   <h1 class="display-4">Profil</h1>
   <p class="lead"> <%= @user.first_name %> </p>
   <p class="lead"> <%= @user.email %> </p>
-  <a style="margin-left: 20px; color: gray; text-decoration: none;"><%=link_to "Editer ton profil", edit_user_registration_path , style: "color: gray; text-decoration: none;" %></a>
+  <a style="margin-left: 20px; color: gray; text-decoration: none;"><%=link_to "Editer ton profil", edit_user_path(current_user.id) , style: "color: gray; text-decoration: none;" %></a>
   <br>
 </div>
 <center>
