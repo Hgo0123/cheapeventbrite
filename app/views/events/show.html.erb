@@ -15,7 +15,7 @@
   <p class="lead"><strong>Description :</strong> "<%=@event.description%>"</p>
   <p class="lead"><strong>Prix :</strong> <%=@event.price%> euros</p>
   <p class="lead"><strong>Créé par :</strong> <%=@event.admin.first_name%> / <%=@event.admin.email%></p>
-  <p class="lead"><strong>Nombre de participants : <%=Attendance.where(event_id: params[:id]).count%></p>
+  <p class="lead"><strong>Nombre de participants :</strong> <%=Attendance.where(event_id: params[:id]).count%></p>
 
       <%if @is_admin || @deja_participant %>
       <%=link_to "Lien pour rejoindre cet evenement", new_charge_path%> 
@@ -48,11 +48,26 @@
    
     <%= link_to "Supprimer cet événement", @event_destroy, :method => :delete, data: {confirm: "Are you sure ?"}, class:"stripe-button"%>
 
-    <p>Liste des participants :</p>         
-    <%@event.users.each do |u|%>
-    <%=u.first_name%>, <%=u.email%>
-    <%end%>
-    
-</div>
+    <p>Liste des participants :</p>   
+    <table class="table table-striped"> 
+  <thead>
+  <tr>
+      <th>Nom</th>
+      <th>Email</th>
+        <th></th>
+  </tr>
+</thead>
 
-   
+    <%@event.users.each do |u|%> 
+  
+    <tr>
+      <td><%=u.first_name%></td>
+      <td><%=u.email%></td>
+     <td><a href="<%user_path(current_user.id)%>" style="text-decoration: none; font-size: .8rem;" >Voir le profil</a></td>
+    </tr>
+    
+   <%end%></table>
+    </div>
+
+
+
