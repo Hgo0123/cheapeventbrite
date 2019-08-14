@@ -26,9 +26,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-
+.env
 .envsendgrid.env
 sendgrid.env
 sendgrid.env
 
-.env
