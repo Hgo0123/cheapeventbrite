@@ -7,6 +7,8 @@ gem 'devise'
 
 gem 'dotenv-rails'
 
+gem 'dotenv'
+
 gem 'table_print'
 
 gem 'faker'
