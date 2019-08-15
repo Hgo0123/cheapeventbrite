@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 			 @attendance = Attendance.new(stripe_customer_id: params[:stripeToken], event: @event, user_id: current_user.id)
 
 
-			 if @event.users.where(id: current_user.id)
+			 if @event.users.include? current_user
 			 	flash[:error] = "Vous participez deja a l'événement"
 			 	redirect_to event_path(params[:id])
 			 	return 
@@ -78,7 +78,7 @@ class EventsController < ApplicationController
 	end
 private
 	 def is_admin?
-    @event.admin == current_user ? true : false
+    @event.admin == current_user
   end
 
 	def deja_participant?

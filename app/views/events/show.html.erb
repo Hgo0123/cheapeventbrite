@@ -1,6 +1,6 @@
-<% if flash[:alert] != nil %>
+<% if flash[:succes] != nil %>
 <div class='alert alert-success mt-4'>
- <center> <%= flash[:alert] %></center>
+ <center> <%= flash[:succes] %></center>
 </div>
 <% end %>
 <% if flash[:error] != nil %>
@@ -17,12 +17,7 @@
   <p class="lead"><strong>Créé par :</strong> <%=@event.admin.first_name%> / <%=@event.admin.email%></p>
   <p class="lead"><strong>Nombre de participants :</strong> <%=Attendance.where(event_id: params[:id]).count%></p>
 
-      <%if @is_admin || @deja_participant %>
-      <%=link_to "Lien pour rejoindre cet evenement", new_charge_path%> 
-      <%else%>
-      <%=nil%>
-      <%end%>
-
+      
       <%= form_tag event_subscribe_path do %>
       <article>
         <% if flash[:error].present? %>
@@ -43,11 +38,13 @@
   data-locale="auto"></script>
   <% end %> 
   <br>
-  
+        <%if @event.admin == current_user%>
     <%=link_to "Editer cet événement", edit_event_path(@event), class:"stripe-button", style: "margin-right: 10px;"%>
    
     <%= link_to "Supprimer cet événement", @event_destroy, :method => :delete, data: {confirm: "Are you sure ?"}, class:"stripe-button"%>
-
+    <%else%>
+    <%nil%>
+    <%end%>
     <p>Liste des participants :</p>   
     <table class="table table-striped"> 
   <thead>
@@ -63,7 +60,7 @@
     <tr>
       <td><%=u.first_name%></td>
       <td><%=u.email%></td>
-     <td><a href="<%user_path(current_user.id)%>" style="text-decoration: none; font-size: .8rem;" >Voir le profil</a></td>
+     <td><%=link_to "Voir le profil", user_path(u.id)%></td>
     </tr>
     
    <%end%></table>

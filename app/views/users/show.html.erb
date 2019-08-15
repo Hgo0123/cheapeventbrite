@@ -7,7 +7,12 @@
   <h1 class="display-4">Profil</h1>
   <p class="lead"> <%= @user.first_name %> </p>
   <p class="lead"> <%= @user.email %> </p>
+
+  <% if current_user.id == @user.id %>
   <a style="margin-left: 20px; color: gray; text-decoration: none;"><%=link_to "Editer ton profil", edit_user_path(current_user.id) , style: "color: gray; text-decoration: none;" %></a>
+  <%else%>
+  <%nil%>
+  <%end%>
   <br>
 </div>
 <center>
