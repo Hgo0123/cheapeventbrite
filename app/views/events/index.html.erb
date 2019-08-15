@@ -3,14 +3,44 @@
        <center> <%= flash[:alert] %></center>
     </div>
   <%end%>
-<div class="jumbotron jumbotron-fluid">
-	<h1 class="display-3 text-white" style="margin-left: 20px;">Hello, <%if user_signed_in?%><%=current_user.first_name%><%else%><%=nil%><%end%></h1>
-	<p class="display-3 text-white" style="margin-left: 20px;"> Welcome sur cette magnifique page ! </p>
-	<p class="lead text-white" style="margin-left: 20px;">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+	
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%=image_tag ('eventbrite.jpg'), class:"d-block w-100" %>
 
-	<a class="btn btn-primary btn-lg" href="#card" role="button" style="margin-left: 20px;">Learn more</a>
+    </div>
+    <div class="carousel-item">
+      <%=image_tag ('celeb.jpg'), class:"d-block w-100" %>
+  
+    </div>
+    <div class="carousel-item">
+      <%=image_tag ('yoga.jpg'), class:"d-block w-100" %>
+    
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+<br>
+
+
+
+
 <div class="body">
+
+  <h2 style="color: #1e0a3c; margin-left: 30px; font-weight: bold;">Vivez le meilleur</h2>
 
 	
 <center>
@@ -19,7 +49,12 @@
 <a href="<%=event_path(e.id)%>" class="text-body" style="text-decoration: none;">
 <div class="card indexcard" style="width: 21rem;">
 	<div class="card-img-top">
-  <%=image_tag('back.jpg', size: '335x169', style: "border-radius: 10px 10px 0px 0px;")%></div>
+    <%if e.avatar.attached? == true%>
+    <%=image_tag e.avatar, alt: 'photo de profil', size: '335x169', style: "border-radius: 10px 10px 0px 0px;"%>
+    <%else%>
+    <p style="height: 169px; margin-bottom: 0px; justify-content: center;"> Ajouter une photo</p>
+    <%end%>
+  </div>
   <div class="card-body">
     <p class="card-text my-text" style="font-size: 1.25rem;"><%=e.title%></p>
   

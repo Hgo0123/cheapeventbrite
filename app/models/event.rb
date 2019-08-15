@@ -1,11 +1,11 @@
 class Event < ApplicationRecord
-
+  has_one_attached :avatar
 	belongs_to :admin, :foreign_key => :admin_id, class_name: 'User'
   belongs_to :attendee, :foreign_key => :attendee_id, class_name: 'User', optional: true
   has_many :attendances
   has_many :users, through: :attendances
 
-  
+  validates :avatar, presence: true
    validates :start_date, presence: true
    validate :future_event
    validates :duration, presence: true, numericality: {greater_than: 0}

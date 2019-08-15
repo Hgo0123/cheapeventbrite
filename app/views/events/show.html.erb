@@ -1,6 +1,6 @@
 <% if flash[:succes] != nil %>
 <div class='alert alert-success mt-4'>
- <center> <%= flash[:succes] %></center>
+   <center> <%= flash[:succes] %></center>
 </div>
 <% end %>
 <% if flash[:error] != nil %>
@@ -8,63 +8,85 @@
     <center> <%= flash[:error] %></center>
 </div>
 <% end %>
-<div class="pricing-header px-2 py-3 pt-md-2 pb-md-2 mx-auto text-center">
-  <h1 class="display-4"><%= @event.title%></h1>
-  <p class="lead"><strong>Son lieu :</strong> <%=@event.location%></p>
-  <p class="lead"><strong>Date de début :</strong> <%=@event.message_time%> | <strong>Durée :</strong> <%=@event.duration%> minutes</p>
-  <p class="lead"><strong>Description :</strong> "<%=@event.description%>"</p>
-  <p class="lead"><strong>Prix :</strong> <%=@event.price%> euros</p>
-  <p class="lead"><strong>Créé par :</strong> <%=@event.admin.first_name%> / <%=@event.admin.email%></p>
-  <p class="lead"><strong>Nombre de participants :</strong> <%=Attendance.where(event_id: params[:id]).count%></p>
+<div class="pricing-header px-2 py-3 pt-md-2 pb-md-2 mx-auto text-center" style="font-size: 1rem;">
 
-      
-      <%= form_tag event_subscribe_path do %>
-      <article>
-        <% if flash[:error].present? %>
-        <div id="error_explanation" style="height: 100px;">
-            <p><%= flash[:error] %></p>
-        </div>
-        <% end %>
-        <label class="amount lead">
-          <span><strong>Amount:</strong> <%=@event.price%> €</span>
-      </label>
-  </article>
+      <h1 class="display-4"><%= @event.title%></h1>
+      <p class="lead" style="font-size: 1rem;"><strong>Son lieu :</strong> <%=@event.location%></p>
+  <p class="lead" style="font-size: 1rem;"><strong>Date de début :</strong> <%=@event.message_time%> | <strong>Durée :</strong> <%=@event.duration%> minutes</p>
+  <p class="lead" style="font-size: 1rem;"><strong>Description :</strong> "<%=@event.description%>"</p>
+  <p class="lead" style="font-size: 1rem;"><strong>Prix :</strong> <%=@event.price%> euros</p>
+  <p class="lead" style="font-size: 1rem;"><strong>Créé par :</strong> <%=@event.admin.first_name%> / <%=@event.admin.email%></p>
+  <p class="lead" style="font-size: 1rem;"><strong>Nombre de participants :</strong> <%=Attendance.where(event_id: params[:id]).count%></p>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-  data-description="A month's subscription"
-  data-amount="<%=@event.price * 100%>"
-  data-currency="eur"
-  data-locale="auto"></script>
-  <% end %> 
+<%if @event.admin == current_user%>
+<%nil%>
+<%elsif @event.users.include? current_user%>
+ <p><strong>Vous participez à cet événement</strong></p>
+<%else%>
+  <%= form_tag event_subscribe_path do %>
+  <article>
+    <% if flash[:error].present? %>
+    <div id="error_explanation" style="height: 100px;">
+        <p><%= flash[:error] %></p>
+    </div>
+    <% end %>
+    <label class="amount lead">
+      <span><strong>Amount:</strong> <%=@event.price%> €</span>
+  </label>
+</article>
+
+<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+data-description="A month's subscription"
+data-amount="<%=@event.price * 100%>"
+data-currency="eur"
+data-locale="auto"></script>
+<% end %> 
+<%end%>
+
+
+<br>
+<%if @event.admin == current_user%>
+<%=link_to "Editer cet événement", edit_event_path(@event), class:"stripe-button", style: "margin-right: 10px;"%>
+
+<%= link_to "Supprimer cet événement", @event_destroy, :method => :delete, data: {confirm: "Are you sure ?"}, class:"stripe-button"%>
+<%else%>
+<%nil%>
+<%end%>
+ 
+<%if @event.admin == current_user%>
+  <h6>Ajouter une photo ?</h6>
+  <div>
+      <br>
+      <%= form_tag event_avatars_path(@event), multipart: true do %>
+      <%= file_field_tag :avatar %>
+      <%= submit_tag "Add" %>
+      <% end %>
+  </div>
+  <%end%>
   <br>
-        <%if @event.admin == current_user%>
-    <%=link_to "Editer cet événement", edit_event_path(@event), class:"stripe-button", style: "margin-right: 10px;"%>
-   
-    <%= link_to "Supprimer cet événement", @event_destroy, :method => :delete, data: {confirm: "Are you sure ?"}, class:"stripe-button"%>
-    <%else%>
-    <%nil%>
-    <%end%>
-    <p>Liste des participants :</p>   
-    <table class="table table-striped"> 
-  <thead>
-  <tr>
-      <th>Nom</th>
-      <th>Email</th>
-        <th></th>
-  </tr>
-</thead>
 
-    <%@event.users.each do |u|%> 
+
+  <p>Liste des participants :</p>   
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th></th>
+      </tr>
+  </thead>
+  <%@event.users.each do |u|%> 
   
-    <tr>
+  <tr>
       <td><%=u.first_name%></td>
       <td><%=u.email%></td>
-     <td><%=link_to "Voir le profil", user_path(u.id)%></td>
-    </tr>
-    
-   <%end%></table>
-    </div>
+      <td><%=link_to "Voir le profil", user_path(u.id)%></td>
+  </tr>
+
+  <%end%></table>
+</div>
+
 
 
 

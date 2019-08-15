@@ -4,6 +4,8 @@
 </div>
 <%end%>
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  
+  <%=image_tag @user.photo , size: "60x60" if @user.photo.attached? %>
   <h1 class="display-4">Profil</h1>
   <p class="lead"> <%= @user.first_name %> </p>
   <p class="lead"> <%= @user.email %> </p>
@@ -23,7 +25,7 @@
 <a href="<%=event_path(g.id)%>" class="text-body" style="text-decoration: none;">
 <div class="card usershow" style="width: 21rem;">
 	<div class="card-img-top">
-  <%=image_tag('back.jpg',size: '335x169', style: "border-radius: 10px 10px 0px 0px;")%></div>
+  <%=image_tag g.avatar ,size: '335x169', style: "border-radius: 10px 10px 0px 0px;" if g.avatar.attached? %></div>
   <div class="card-body">
     <p class="card-text my-text"style="font-size: 1.25rem;"><%=g.title%></p>
      <small><p style="font-size: 10px;" class="text-secondary">
