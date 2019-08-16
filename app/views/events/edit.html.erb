@@ -1,70 +1,71 @@
 <br>
 <%if @event_update.errors.any? %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    	<p><strong>Hola muchachos !</strong>  Nous n'avons pas réussi à créer l'eévénement pour la (ou les) raison(s) suivante(s) :</p>
-    	<% @event_update.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+ <p><strong>Hola muchachos !</strong>  Nous n'avons pas réussi à modifier l'événement pour la (ou les) raison(s) suivante(s) :</p>
+ <% @event_update.errors.full_messages.each do |message| %>
+ <li><%= message %></li>
+ <% end %>
 
-    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    		<span aria-hidden="true">&times;</span>
-    	</button>
-    </div>
-    
-    <%end%>
+ <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<%end%>
 
-  <body>
-    <!-- ... -->
+<div class="jumbotron jumbotron-fluid jumboedit">
+  <h1 class="display-3 text-white" style="margin-left: 20px;">Edite cet événement</h1>
+  <p class="display-3 text-white" style="margin-left: 20px;"></p>
+  <p class="lead text-white" style="margin-left: 20px;"></p>
 
-    <div class="container">
+  <a class="btn btn-primary btn-lg" href="#form" role="button" style="margin-left: 20px;">Learn more</a>
+</div>
 
-      <%=form_tag url_for(action: 'update'), method: "put" do %>
+<body>
+  <!-- ... -->
 
-      <div class="form-group">
-       <%= label_tag 'Start Date' %>
-        <br>
-        <%= date_field_tag 'start_date', @event_update.start_date %>
-       
+  <div class="container">
+
+    <%=form_tag url_for(action: 'update'), method: "put" do %>
+
+    <form >
+      <div id="form" class="form-row" style="width: 70%; margin: auto;">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Title</label>
+          <%= text_field_tag 'title', @event_update.title, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Description</label>
+          <%= text_field_tag 'description', @event_update.description, class: "form-control" %>
+        </div>
       </div>
 
-      <div class="form-group">
-       <%= label_tag 'Duration' %>
-        <br>
-        <%= number_field_tag 'duration', @event_update.duration %>
-        
+      <div class="form-row" style="width: 70%; margin: auto;">
+        <div class="form-group col-md-6">
+          <label>Duration</label>
+          <%= number_field_tag 'duration', @event_update.duration, class: "form-control" %> 
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputAddress2">Start date</label>
+          <%= date_field_tag 'start_date', @event_update.start_date, class: "form-control" %>
+        </div>
       </div>
 
-      <div class="form-group">
-       <%= label_tag 'Title' %>
-        <br>
-        <%= text_field_tag 'title', @event_update.title %>
-        
+      <div class="form-row" style="width: 70%; margin: auto;">
+        <div class="form-group col-md-6">
+          <label for="inputCity">Price</label>
+          <%= number_field_tag'price', @event_update.price, class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputCity">Location</label>
+          <%= text_field_tag 'location', @event_update.location, class: "form-control" %>
+        </div>
       </div>
-      <div class="form-group">
-
-        <%= label_tag 'Description' %>
-        <br>
-        <%= text_field_tag 'description', @event_update.description %>
-        
-      </div>
-
-       <div class="form-group">
-       <%= label_tag 'Price' %>
-        <br>
-        <%= number_field_tag 'price', @event_update.price %>
-     
-      </div>
-      <div class="form-group">
-
-        <%= label_tag 'Location' %>
-        <br>
-        <%= text_field_tag 'location', @event_update.location %>
-     
-      </div>
-
-      <div class="form-group">
-
-        <%= submit_tag "Edit Event" %>
-      </div>
-      <% end %>
-    </div>
+        <div>
+          <br>
+          <center><p type="submit" style="width: 20%; height: 10px;"><%= submit_tag "Edit Event", class: "btn btn-primary" %></p></center>
+        </div>
+      </form>
+        <% end %>
+  </div>
+</body>
