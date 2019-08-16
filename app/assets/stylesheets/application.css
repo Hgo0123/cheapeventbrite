@@ -12,7 +12,11 @@
  *
  *= require_tree .
  *= require_self
+
  */
+ body {
+ 	height: 100%;
+ }
 
 div.card {
 	display: inline-block;

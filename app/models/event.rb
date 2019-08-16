@@ -12,20 +12,32 @@ class Event < ApplicationRecord
    validate :multiple_of_5
    validates :title, presence: true, length: { minimum: 5, maximum: 140}
    validates :description, presence: true, length: { minimum: 20, maximum: 1000}
-   validates :price, presence: true, numericality: {greater_than: 0, less_than: 1000}
+   validates :price, presence: true, numericality: {less_than: 1000}
    validates :location, presence: true
    
+   def mois
+    start_date.strftime("%^b")
+  end
+  def jour
+    start_date.strftime('%d')
+  end
+
    def message_time
-      start_date.strftime("%d/%m/%y | %l:%M %p")
+      start_date.strftime("%d %^b %y | %l:%M %p")
     end
     def the_end
          @end = (start_date + duration.minute)
-           @the_end = @end.strftime("%d/%m/%y | %l:%M %p")
+           @the_end = @end.strftime("%d %^b %y | %l:%M %p")
      end
 
-
+   def is_free?
+   self.price == 0
+    
+   end
 
    private
+
+
 
   def future_event
     if start_date == nil

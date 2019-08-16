@@ -6,11 +6,12 @@ class EventsController < ApplicationController
 
 	def new
 		@new_event = Event.new
+		@new_event.avatar.attach(params[:avatar])
 	end
 
 	def create
 		@user = current_user.id
-		@new_event = Event.new('start_date' => params[:start_date], 'duration' => params[:duration], 'title' => params[:title], 'description' => params[:description], 'price' => params[:price], 'location' => params[:location], 'admin_id' => @user)
+		@new_event = Event.new(event_params)
 		if @new_event.save
 			redirect_to root_path, alert: 'Votre événement a bien été créé'
 		else
@@ -76,6 +77,10 @@ class EventsController < ApplicationController
 		redirect_to new_charge_path
 	end
 	private
+	def event_params
+		params.permit(:start_date, :duration, :title, :description, :price, :location, :admin_id, :avatar)
+
+	end
 	def is_admin?
 		@event.admin == current_user
 	end

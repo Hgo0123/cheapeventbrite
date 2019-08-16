@@ -1,28 +1,49 @@
-<br>
-<%=form_tag url_for(action: 'update'), method: "put" do %>
+<body>
+<center>
+  <h5>Edit your profile</h5>
+</center>
+   <div style="margin-left: 20px; display: flex; justify-content: space-between; margin-top: 50px;">
 
-      <div class="form-group">
-       <%= label_tag 'First_name' %>
-        <br>
-        <%= text_field_tag 'first_name', current_user.first_name %>
-        <br /> <br />
-      </div>
-      <div class="form-group">
+  <div class="form" style="width: 50%; margin-left: 100px;">
+     
+    <%=form_tag url_for(action: 'update'), method: "put" do %>
+    <div class="form-group" style="margin-top: 20px; width: 80%;">
+      <%= label_tag 'First_name' %>
+      <br>
+      <%= text_field_tag 'first_name', current_user.first_name, class: "form-control" %>
+    </div>
+    <div class="form-group" style="width: 80%;" >
+      <%= label_tag 'Last_name' %>
+      <br>
+      <%= text_field_tag 'last_name', current_user.last_name, class: "form-control" %>
+    </div>
+    <br>
+    <div class="form-group" style="width: 80%;">
 
-        <%= label_tag 'Last_name' %>
-        <br>
-        <%= text_area_tag 'last_name', current_user.last_name %>
-        <br /> <br />
-      </div>
-      <div class="form-group">
-
-        <%= submit_tag "Edit Profile" %>
+      <%= submit_tag "Edit Profile", class: "btn btn-sm btn-primary", style: "width:100%" %>
+    </div>
+    <% end %>
+  </div>  
+    <div class="picture" style="width: 40%; margin-right: 70px;">
+      <% if current_user.photo.attached? == true %>
+      <h6>Changer d'avatar ?</h6>
+       <%=image_tag @user.photo , size: "240x240" , style: "margin-bottom: 5px;" %>
+     <%else%>
+      <h6>Upload a picture</h6>
+      <%end%>
+      <div class="form-group" style="width: 60%;">
+        <%= form_tag user_photos_path(@user), multipart: true do %>
+        <%= file_field_tag :photo %>
+        <%= submit_tag "Upate", class: "btn btn-sm btn-primary", style: "margin-top: 10px;"%>
       </div>
       <% end %>
     </div>
-
-    <h3>Changer d'avatar ?</h3>
-<%= form_tag user_photos_path(@user), multipart: true do %>
-  <%= file_field_tag :photo %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
+</div></center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>

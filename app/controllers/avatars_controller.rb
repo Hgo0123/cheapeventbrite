@@ -2,7 +2,7 @@ class AvatarsController < ApplicationController
 
 
 	def create
-    @event = Event.find(params[:event_id])
+    @event = Event.new
     @event.avatar.attach(params[:avatar])
     if @event.avatar.save
     	flash[:alert] = "Photo successfully added"

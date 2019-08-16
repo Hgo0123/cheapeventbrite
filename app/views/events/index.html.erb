@@ -45,27 +45,31 @@
 	
 <center>
 
-<%@event.all.reverse_each do |e|%>
-<a href="<%=event_path(e.id)%>" class="text-body" style="text-decoration: none;">
-<div class="card indexcard" style="width: 21rem;">
-	<div class="card-img-top">
-    <%if e.avatar.attached? == true%>
-    <%=image_tag e.avatar, alt: 'photo de profil', size: '335x169', style: "border-radius: 10px 10px 0px 0px;"%>
-    <%else%>
-    <p style="height: 169px; margin-bottom: 0px; justify-content: center;"> Ajouter une photo</p>
-    <%end%>
-  </div>
-  <div class="card-body">
-    <p class="card-text my-text" style="font-size: 1.25rem;"><%=e.title%></p>
-  
-     <small><p style="font-size: 10px;" class="text-secondary">
-     À partir de <%=e.price%>.00 €
-     <br>
-    <%=e.message_time%>, Durée : <%=e.duration%> min
-   	<br>
-    <%=e.location%></p></small>
-  </div>
-</div>
-</a>
-  <%end%>
+  <%@event.all.reverse_each do |e|%>
+  <a href="<%=event_path(e.id)%>" class="text-body" style="text-decoration: none;">
+    <div class="card indexcard" style="width: 21rem;">
+     <div class="card-img-top">
+      <%if e.avatar.attached? == true%>
+      <%=image_tag e.avatar, alt: 'photo de profil', size: '335x169', style: "border-radius: 10px 10px 0px 0px;"%>
+      <%else%>
+      <p style="height: 169px; margin-bottom: 0px; justify-content: center;">Ajoute une photo</p>
+      <%end%>
+    </div>
+    <div class="card-body">
+      <div class="titre" style="display: flex;">
+        <span class="badge badge-white" style="margin-right:20px; font-size: .9rem;"><small style="color:orange;"><%=e.mois%></small><br><%=e.jour%></span>
+        <p class="card-text my-text" style="font-size: 1.25rem; width: 80%;"><cente><%=e.title%> <br><% if e.is_free?%><span class="badge badge-danger">GRATUIT !</span><%end%></cente></p>
+      </div>
+      <small><p style="font-size: 10px;" class="text-secondary">
+       <%if e.is_free? == false%>
+       À partir de : <%=e.price%>.00 €
+       <%end%>
+       <br>
+       <%=e.message_time%>, Durée : <%=e.duration%> min
+       <br>
+       <%= content_tag(:i, "", class: "fas fa-map-marker-alt text-body") %></i> <%=e.location%></p></small>
+     </div>
+   </div>
+ </a>
+ <%end%>
 </center>

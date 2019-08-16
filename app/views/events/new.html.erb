@@ -53,7 +53,12 @@
 		<label for="inputCity">Location</label>
 		<%= text_field_tag 'location', @new_event.location, class: "form-control" %>
 	</div>
+  <%= file_field 'avatar', :avatar %>
 </div>
+<div>
+		<%= hidden_field_tag "admin_id", current_user.id%>
+
+	</div>
 
 <br>
 <center><p type="submit" style="width: 20%; height: 10px;"><%= submit_tag "Create Event", class: "btn btn-primary" %></p></center>
